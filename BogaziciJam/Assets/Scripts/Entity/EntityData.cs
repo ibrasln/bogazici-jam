@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using NaughtyAttributes;
 using UnityEngine;
 
-namespace Entity
+namespace Bogazici.Entity
 {
     public class EntityData : ScriptableObject
     {

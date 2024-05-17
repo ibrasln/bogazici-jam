@@ -15,7 +15,7 @@ namespace StateMachine
             CurrentState.Enter();
             OnStateChanged?.Invoke();
         }
-        
+
         public void ChangeState(State<T1, T2> newState)
         {
             PreviousState = CurrentState;
@@ -23,6 +23,7 @@ namespace StateMachine
             CurrentState = newState;
             CurrentState.Enter();
             OnStateChanged?.Invoke();
+            Debug.Log(nameof(CurrentState));
         }
     }
 }

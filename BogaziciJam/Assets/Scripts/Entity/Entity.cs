@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Entity
+namespace Bogazici.Entity
 {
     public class Entity<T> : MonoBehaviour where T : EntityData
     {
@@ -10,7 +10,7 @@ namespace Entity
         #endregion
 
         public T Data;
-        
+
         protected virtual void Awake()
         {
             Anim = GetComponent<Animator>();

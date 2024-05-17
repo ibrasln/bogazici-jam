@@ -1,13 +1,13 @@
 using StateMachine;
 
-namespace Entity
+namespace Bogazici.Entity
 {
-    public class EntityState<T1, T2> : State<T1, T2> where T1: Entity<T2> where T2: EntityData
+    public class EntityState<T1, T2> : State<T1, T2> where T1 : Entity<T2> where T2 : EntityData
     {
-        public EntityState(T1 obj, StateMachine<T1, T2> stateMachine,T2 objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
+        public EntityState(T1 obj, StateMachine<T1, T2> stateMachine, T2 objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {
         }
-        
+
         public override void Enter()
         {
             base.Enter();

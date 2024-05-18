@@ -58,5 +58,7 @@ namespace Bogazici.Player
         {
             base.OnDrawGizmos();
         }
+
+        public void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
     }
 }

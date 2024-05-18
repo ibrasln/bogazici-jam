@@ -11,6 +11,8 @@ namespace Bogazici.Entity
 
         public T Data;
 
+        public int FacingDirection { get; private set; }
+
         #region Collision Checks
         [SerializeField] private Transform groundCheckTransform;
         public bool OnGround
@@ -27,7 +29,10 @@ namespace Bogazici.Entity
             Rb = GetComponent<Rigidbody2D>();
         }
 
-        protected virtual void Start() { }
+        protected virtual void Start()
+        {
+            FacingDirection = 1;
+        }
 
         protected virtual void Update()
         {
@@ -35,6 +40,13 @@ namespace Bogazici.Entity
         }
 
         protected virtual void FixedUpdate() { }
+
+        public bool CanFlip(int xInput) { return xInput != 0 && xInput != FacingDirection; }
+        public void Flip()
+        {
+            FacingDirection *= -1;
+            transform.Rotate(0, 180, 0);
+        }
 
         protected virtual void OnDrawGizmos()
         {

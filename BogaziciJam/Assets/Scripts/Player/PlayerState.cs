@@ -5,8 +5,8 @@ namespace Bogazici.Player
 {
     public class PlayerState : EntityState<Player, PlayerData>
     {
-        protected float xInput;
-        protected float yInput;
+        protected int xInput;
+        protected int yInput;
         protected bool jumpInput;
         protected bool attackInput;
         protected bool rollInput;

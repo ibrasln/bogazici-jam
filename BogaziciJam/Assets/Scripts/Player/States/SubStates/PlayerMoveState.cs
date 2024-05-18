@@ -30,7 +30,11 @@ namespace Bogazici.Player.States
 
             if (xInput == 0) stateMachine.ChangeState(obj.IdleState);
             else if (yInput < 0) stateMachine.ChangeState(obj.CrouchState);
-            else obj.Rb.SetVelocityX(xInput * objData.MoveSpeed);
+            else
+            {
+                obj.Rb.SetVelocityX(xInput * objData.MoveSpeed);
+                if (obj.CanFlip(xInput)) obj.Flip();
+            }
         }
 
         public override void PhysicsUpdate()

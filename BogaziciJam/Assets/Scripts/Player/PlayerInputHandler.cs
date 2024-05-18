@@ -6,8 +6,8 @@ namespace Bogazici.Player
     public class PlayerInputHandler : MonoBehaviour
     {
         public Vector2 MovementInput { get; private set; }
-        public float XInput { get; private set; }
-        public float YInput { get; private set; }
+        public int XInput { get; private set; }
+        public int YInput { get; private set; }
         public bool RollInput { get; private set; }
         public bool JumpInput { get; private set; }
         public bool AttackInput { get; private set; }
@@ -17,14 +17,14 @@ namespace Bogazici.Player
             if (context.canceled)
             {
                 MovementInput = Vector2.zero;
-                XInput = 0f;
-                YInput = 0f;
+                XInput = 0;
+                YInput = 0;
             }
             else
             {
                 MovementInput = context.ReadValue<Vector2>();
-                XInput = MovementInput.x;
-                YInput = MovementInput.y;
+                XInput = (int)MovementInput.x;
+                YInput = (int)MovementInput.y;
             }
         }
 

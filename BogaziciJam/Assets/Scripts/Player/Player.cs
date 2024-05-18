@@ -1,5 +1,6 @@
 using Bogazici.Managers;
 using Bogazici.Player.States;
+using IboshEngine.Runtime.ObjectPool;
 using UnityEngine;
 
 namespace Bogazici.Player
@@ -17,7 +18,7 @@ namespace Bogazici.Player
         public PlayerJumpState JumpState { get; set; }
         public PlayerInAirState InAirState { get; set; }
         public PlayerCrouchState CrouchState { get; set; }
-        public PlayerRollState RollState { get; set; }
+        public PlayerDashState DashState { get; set; }
         public PlayerMeleeAttackState MeleeAttackState { get; set; }
         public PlayerRangedAttackState RangedAttackState { get; set; }
         public PlayerChangeTimeState ChangeTimeState { get; set; }
@@ -26,6 +27,9 @@ namespace Bogazici.Player
         #region Temporary
         private SpriteRenderer _sr;
         #endregion
+
+        public ObjectPool<AfterImage> AfterImageObjectPool;
+        [SerializeField] private Transform afterImagesParent;
 
         public bool CanChangeTime;
         private float _changeTimeUsageTimer;
@@ -41,13 +45,15 @@ namespace Bogazici.Player
 
             IdleState = new(this, StateMachine, Data, "idle");
             MoveState = new(this, StateMachine, Data, "move");
-            JumpState = new(this, StateMachine, Data, "jump");
+            JumpState = new(this, StateMachine, Data, "inAir");
             InAirState = new(this, StateMachine, Data, "inAir");
             CrouchState = new(this, StateMachine, Data, "crouch");
-            RollState = new(this, StateMachine, Data, "roll");
+            DashState = new(this, StateMachine, Data, "dash");
             MeleeAttackState = new(this, StateMachine, Data, "meleeAttack");
             RangedAttackState = new(this, StateMachine, Data, "rangedAttack");
             ChangeTimeState = new(this, StateMachine, Data, "changeTime");
+
+            AfterImageObjectPool = new(Data.AfterImagePrefab, afterImagesParent, 10);
         }
 
         protected override void Start()

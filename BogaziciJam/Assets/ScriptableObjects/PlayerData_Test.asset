@@ -19,7 +19,9 @@ MonoBehaviour:
     m_Bits: 64
   MaxHealth: 10
   JumpPower: 15
-  RollCooldown: 0.3
-  RollSpeed: 15
+  DashCooldown: 0.4
+  DashSpeed: 15
   ChangeTimeUsageCooldown: 20
   ChangeTimeCooldown: 1
+  DistanceBetweenAfterImages: 0.7
+  AfterImagePrefab: {fileID: 1077755648808778026, guid: fd59e154979424244b0ce99544a39b4c, type: 3}

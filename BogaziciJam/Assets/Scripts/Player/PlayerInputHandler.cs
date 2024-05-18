@@ -8,7 +8,7 @@ namespace Bogazici.Player
         public Vector2 MovementInput { get; private set; }
         public float XInput { get; private set; }
         public float YInput { get; private set; }
-        public bool RollInput { get; private set; }
+        public bool DashInput { get; private set; }
         public bool JumpInput { get; private set; }
         public bool AttackInput { get; private set; }
         public bool ChangeTimeInput { get; private set; }
@@ -30,15 +30,15 @@ namespace Bogazici.Player
             }
         }
 
-        public void OnRoll(InputAction.CallbackContext context)
+        public void OnDash(InputAction.CallbackContext context)
         {
             if (context.started)
             {
-                RollInput = true;
+                DashInput = true;
             }
             else if (context.canceled)
             {
-                RollInput = false;
+                DashInput = false;
             }
         }
 
@@ -91,7 +91,7 @@ namespace Bogazici.Player
         }
 
         public void UseJumpInput() => JumpInput = false;
-        public void UseRollInput() => RollInput = false;
+        public void UseDashInput() => DashInput = false;
         public void UseAttackInput() => AttackInput = false;
         public void UseChangeTimeInput() => ChangeTimeInput = false;
     }

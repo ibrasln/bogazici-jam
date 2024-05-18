@@ -80,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.480519, g: 0.8415094, b: 0.3985261, a: 1}
+  m_Sprite: {fileID: 1280393105, guid: 5e98fed99fd1e3248a10e09403ef7ca9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -123,8 +123,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0.015410364, y: 0.03852582}
+  m_Size: {x: 0.6455616, y: 1.6763825}
   m_Direction: 0
 --- !u!114 &710322679212394798
 MonoBehaviour:
@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda7c344c9a3a8d47990e70a66d7fbad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: e3e4e19a48e3672499856ad25fee476c, type: 2}
   groundCheckTransform: {fileID: 1818097444317629469}
+  Data: {fileID: 11400000, guid: e3e4e19a48e3672499856ad25fee476c, type: 2}
   CanChangeTime: 0
 --- !u!114 &2436574868277143562
 MonoBehaviour:
@@ -211,46 +211,6 @@ MonoBehaviour:
     m_ActionId: c4abe8c5-6c9e-482c-a021-2ab17a387d28
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 59ea2454-3e56-4d6b-8346-26a982a39ca8
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 881748bb-d7aa-4c51-a7b4-008c05acd006
-    m_ActionName: UI/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 537c0ba5-7bfc-40ab-8adc-f86d44aa30a5
-    m_ActionName: UI/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 102cb38d-3448-41b5-a7e9-85cb4a054e74
-    m_ActionName: UI/Point[/Mouse/position,/Pen/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7af2c6df-3932-4435-b43a-43906c389a07
-    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 434c25fa-f30e-40a3-a24a-60934f90fda0
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: da0405a5-9c55-43c7-a847-ac977073b275
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 31bb9543-eb12-4331-8980-0c38a0259b41
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3336b3ac-146d-42e3-b06e-62874e7b4ceb
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3bc63d4a-72a6-4813-ba33-6270a8fdc783
-    m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2436574868277143562}
         m_TargetAssemblyTypeName: Bogazici.Player.PlayerInputHandler, Assembly-CSharp
@@ -270,7 +230,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2436574868277143562}
         m_TargetAssemblyTypeName: Bogazici.Player.PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnRoll
+        m_MethodName: OnDash
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -376,7 +336,7 @@ Transform:
   m_GameObject: {fileID: 1283524785731652135}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.773, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

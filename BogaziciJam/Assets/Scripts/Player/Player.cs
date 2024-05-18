@@ -28,8 +28,17 @@ namespace Bogazici.Player
         private SpriteRenderer _sr;
         #endregion
 
+        #region Object Pools
         public ObjectPool<AfterImage> AfterImageObjectPool;
+        public ObjectPool<Ammo.Ammo> AmmoObjectPool;
+        #endregion
+
+        [HideInInspector] public Transform ShootPosition;
+
+        [Space(7)]
+        [Header("PARENT OBJECTS OF POOLS")]
         [SerializeField] private Transform afterImagesParent;
+        [SerializeField] private Transform ammosParent;
 
         public bool CanChangeTime;
         private float _changeTimeUsageTimer;
@@ -54,6 +63,9 @@ namespace Bogazici.Player
             ChangeTimeState = new(this, StateMachine, Data, "changeTime");
 
             AfterImageObjectPool = new(Data.AfterImagePrefab, afterImagesParent, 10);
+            AmmoObjectPool = new(Data.AmmoPrefab, ammosParent, 10);
+
+            ShootPosition = transform.Find("ShootPosition");
         }
 
         protected override void Start()
@@ -86,6 +98,12 @@ namespace Bogazici.Player
         protected override void OnDrawGizmos()
         {
             base.OnDrawGizmos();
+        }
+
+        public void Fire()
+        {
+            Ammo.Ammo ammo = AmmoObjectPool.Pull();
+            ammo.gameObject.SetActive(true);
         }
 
         public override bool CanFlip(int xInput)

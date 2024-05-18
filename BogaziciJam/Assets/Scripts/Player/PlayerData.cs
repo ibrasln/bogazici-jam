@@ -23,5 +23,9 @@ namespace Bogazici.Player
         [Header("AFTER IMAGE PROPERTIES")]
         public float DistanceBetweenAfterImages;
         public GameObject AfterImagePrefab;
+
+        [Space(7)]
+        [Header("AMMO PROPERTIES")]
+        public GameObject AmmoPrefab;
     }
 }

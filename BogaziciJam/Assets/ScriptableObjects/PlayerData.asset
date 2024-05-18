@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3846c8cb8612dc4d9d50acfc77363ff, type: 3}
-  m_Name: PlayerData_Test
+  m_Name: PlayerData
   m_EditorClassIdentifier: 
   MoveSpeed: 7
   GroundCheckRadius: 0.1
@@ -25,3 +25,4 @@ MonoBehaviour:
   ChangeTimeCooldown: 1
   DistanceBetweenAfterImages: 0.7
   AfterImagePrefab: {fileID: 1077755648808778026, guid: fd59e154979424244b0ce99544a39b4c, type: 3}
+  AmmoPrefab: {fileID: 6428317963514017117, guid: a2b9ff708d095fb47967bbe46bd9bc6b, type: 3}

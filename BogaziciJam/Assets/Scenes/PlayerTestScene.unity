@@ -3077,6 +3077,37 @@ Transform:
   - {fileID: 125328833}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1762564520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1762564521}
+  m_Layer: 0
+  m_Name: AmmosParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1762564521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762564520}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1773300386
 GameObject:
   m_ObjectHideFlags: 0
@@ -3446,9 +3477,25 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 710322679212394798, guid: 5fff93a0e7c77cb43aee8f1564447e96, type: 3}
+      propertyPath: ammosParent
+      value: 
+      objectReference: {fileID: 1762564521}
+    - target: {fileID: 710322679212394798, guid: 5fff93a0e7c77cb43aee8f1564447e96, type: 3}
       propertyPath: afterImagesParent
       value: 
       objectReference: {fileID: 803539390}
+    - target: {fileID: 1089336584154116466, guid: 5fff93a0e7c77cb43aee8f1564447e96, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 1688609229794432163, guid: 5fff93a0e7c77cb43aee8f1564447e96, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688609229794432163, guid: 5fff93a0e7c77cb43aee8f1564447e96, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.315
+      objectReference: {fileID: 0}
     - target: {fileID: 4754035536778913563, guid: 5fff93a0e7c77cb43aee8f1564447e96, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3505,3 +3552,4 @@ SceneRoots:
   - {fileID: 1809874159}
   - {fileID: 1547970657}
   - {fileID: 803539390}
+  - {fileID: 1762564521}

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1157a54e6d31b6468100ca7cb1dfd56, type: 3}
   m_Name: AmmoData
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 15
   Damage: 5

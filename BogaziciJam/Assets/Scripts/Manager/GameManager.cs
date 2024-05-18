@@ -1,5 +1,6 @@
 using IboshEngine.Runtime.Singleton;
 using System;
+using UnityEngine;
 
 namespace Bogazici.Managers
 {
@@ -7,6 +8,15 @@ namespace Bogazici.Managers
     {
         public GameTime GameTime;
         public Action OnGameTimeChanged;
+
+        public Player.Player Player;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player.Player>();
+        }
 
         public void ChangeTime()
         {

@@ -31,6 +31,7 @@ namespace Bogazici.Player.States
             base.LogicUpdate();
 
             if (xInput != 0) stateMachine.ChangeState(obj.MoveState);
+            else if (yInput < 0) stateMachine.ChangeState(obj.CrouchState);
         }
 
         public override void PhysicsUpdate()

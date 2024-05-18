@@ -1,12 +1,11 @@
+using IboshEngine.Runtime.Extensions;
 using StateMachine;
 
 namespace Bogazici.Player.States
 {
-    public class PlayerAbilityState : PlayerState
+    public class PlayerCrouchState : PlayerGroundedState
     {
-        protected bool isAbilityDone;
-
-        public PlayerAbilityState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
+        public PlayerCrouchState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {
         }
 
@@ -18,7 +17,8 @@ namespace Bogazici.Player.States
         public override void Enter()
         {
             base.Enter();
-            isAbilityDone = false;
+
+            obj.Rb.SetVelocityZero();
         }
 
         public override void Exit()
@@ -30,11 +30,7 @@ namespace Bogazici.Player.States
         {
             base.LogicUpdate();
 
-            if (isAbilityDone)
-            {
-                if (onGround && obj.CurrentVelocity.y < 0.01f) stateMachine.ChangeState(obj.IdleState);
-                else stateMachine.ChangeState(obj.InAirState);
-            }
+            if (yInput == 0) stateMachine.ChangeState(obj.IdleState);
         }
 
         public override void PhysicsUpdate()

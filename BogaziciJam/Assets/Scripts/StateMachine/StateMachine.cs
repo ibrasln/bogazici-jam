@@ -23,7 +23,7 @@ namespace StateMachine
             CurrentState = newState;
             CurrentState.Enter();
             OnStateChanged?.Invoke();
-            Debug.Log(nameof(CurrentState));
+            Debug.Log(CurrentState.ToString());
         }
     }
 }

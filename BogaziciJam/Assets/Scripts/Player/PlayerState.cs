@@ -1,23 +1,26 @@
 using Bogazici.Entity;
-using Bogazici.Player;
 using StateMachine;
 
-namespace Bogazici
+namespace Bogazici.Player
 {
-    public class PlayerState : EntityState<Player.Player, PlayerData>
+    public class PlayerState : EntityState<Player, PlayerData>
     {
         protected float xInput;
         protected float yInput;
         protected bool jumpInput;
         protected bool attackInput;
 
-        public PlayerState(Player.Player obj, StateMachine<Player.Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
+        protected bool onGround;
+
+        public PlayerState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {
         }
 
         public override void DoChecks()
         {
             base.DoChecks();
+
+            onGround = obj.OnGround;
         }
 
         public override void Enter()
@@ -34,10 +37,12 @@ namespace Bogazici
         {
             base.LogicUpdate();
 
+            // Inputs
             xInput = obj.InputHandler.XInput;
             yInput = obj.InputHandler.YInput;
             jumpInput = obj.InputHandler.JumpInput;
             attackInput = obj.InputHandler.AttackInput;
+
         }
 
         public override void PhysicsUpdate()

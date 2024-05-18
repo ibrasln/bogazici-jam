@@ -1,3 +1,4 @@
+using IboshEngine.Runtime.Extensions;
 using StateMachine;
 
 namespace Bogazici.Player.States
@@ -26,6 +27,9 @@ namespace Bogazici.Player.States
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+
+            if (onGround) stateMachine.ChangeState(obj.IdleState);
+            else obj.Rb.SetVelocityX(xInput * objData.MoveSpeed);
         }
 
         public override void PhysicsUpdate()

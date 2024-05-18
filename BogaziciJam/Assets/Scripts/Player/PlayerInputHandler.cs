@@ -63,5 +63,9 @@ namespace Bogazici.Player
                 AttackInput = false;
             }
         }
+
+        public void UseJumpInput() => JumpInput = false;
+        public void UseRollInput() => RollInput = false;
+        public void UseAttackInput() => AttackInput = false;
     }
 }

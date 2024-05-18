@@ -14,6 +14,7 @@ namespace Bogazici.Player
         public PlayerMoveState MoveState { get; set; }
         public PlayerJumpState JumpState { get; set; }
         public PlayerInAirState InAirState { get; set; }
+        public PlayerCrouchState CrouchState { get; set; }
         #endregion
 
         protected override void Awake()
@@ -27,6 +28,7 @@ namespace Bogazici.Player
             MoveState = new(this, StateMachine, Data, "move");
             JumpState = new(this, StateMachine, Data, "jump");
             InAirState = new(this, StateMachine, Data, "inAir");
+            CrouchState = new(this, StateMachine, Data, "crouch");
         }
 
         protected override void Start()
@@ -48,6 +50,11 @@ namespace Bogazici.Player
             base.Update();
 
             StateMachine.CurrentState.LogicUpdate();
+        }
+
+        protected override void OnDrawGizmos()
+        {
+            base.OnDrawGizmos();
         }
     }
 }

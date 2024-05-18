@@ -3,7 +3,7 @@ using StateMachine;
 
 namespace Bogazici.Player.States
 {
-    public class PlayerJumpState : PlayerGroundedState
+    public class PlayerJumpState : PlayerAbilityState
     {
         public PlayerJumpState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {
@@ -19,7 +19,8 @@ namespace Bogazici.Player.States
             base.Enter();
 
             obj.Rb.SetVelocityY(objData.JumpPower);
-            stateMachine.ChangeState(obj.InAirState);
+            obj.InputHandler.UseJumpInput();
+            isAbilityDone = true;
         }
 
         public override void Exit()

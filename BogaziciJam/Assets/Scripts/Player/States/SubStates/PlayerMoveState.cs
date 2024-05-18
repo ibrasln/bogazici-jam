@@ -29,6 +29,7 @@ namespace Bogazici.Player.States
             base.LogicUpdate();
 
             if (xInput == 0) stateMachine.ChangeState(obj.IdleState);
+            else if (yInput < 0) stateMachine.ChangeState(obj.CrouchState);
             else obj.Rb.SetVelocityX(xInput * objData.MoveSpeed);
         }
 

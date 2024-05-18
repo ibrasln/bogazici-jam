@@ -27,7 +27,7 @@ namespace Bogazici.Player.States
         {
             base.LogicUpdate();
 
-            if (jumpInput) stateMachine.ChangeState(obj.JumpState);
+            if (jumpInput && obj.CurrentVelocity.y < 0.01f) stateMachine.ChangeState(obj.JumpState);
         }
 
         public override void PhysicsUpdate()

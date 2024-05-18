@@ -4,9 +4,9 @@ namespace Bogazici.Player
 {
     public class AfterImage : MonoBehaviour
     {
-        private SpriteRenderer sr;
-        private Transform player;
-        private SpriteRenderer playerSR;
+        private SpriteRenderer _sr;
+        private Transform _player;
+        private SpriteRenderer _playerSR;
 
         private float timeActivated;
         private float alpha;
@@ -16,27 +16,27 @@ namespace Bogazici.Player
 
         private void Awake()
         {
-            sr = GetComponent<SpriteRenderer>();
-            player = GameObject.FindGameObjectWithTag("Player").transform;
-            playerSR = player.GetComponent<SpriteRenderer>();
+            _sr = GetComponent<SpriteRenderer>();
+            _player = GameObject.FindGameObjectWithTag("Player").transform;
+            _playerSR = _player.GetComponent<SpriteRenderer>();
         }
 
         private void OnEnable()
         {
-            transform.SetPositionAndRotation(player.position, player.rotation);
+            transform.SetPositionAndRotation(_player.position, _player.rotation);
             timeActivated = Time.time;
             alpha = alphaSet;
-            sr.sprite = playerSR.sprite;
+            _sr.sprite = _playerSR.sprite;
         }
 
         private void Update()
         {
             alpha -= alphaDecay * Time.deltaTime;
-            sr.color = new(1, 1, 1, alpha);
+            _sr.color = new(1, 1, 1, alpha);
 
             if (Time.time >= timeActivated + activeTime)
             {
-                gameObject.SetActive(false);
+                _player.GetComponent<Player>().AfterImageObjectPool.Push(gameObject);
             }
         }
     }

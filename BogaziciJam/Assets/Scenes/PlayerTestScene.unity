@@ -554,20 +554,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1987200368}
+    m_ActionId: 05fd0f04-6b3b-4910-a893-4ec40236db45
+    m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1987200370}
         m_TargetAssemblyTypeName: Bogazici.Player.PlayerInputHandler, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: OnRoll
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 05fd0f04-6b3b-4910-a893-4ec40236db45
-    m_ActionName: Player/New action
+    m_ActionId: 7c8ee156-2659-4a2e-a20f-8a9c8571e636
+    m_ActionName: Player/Roll[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player

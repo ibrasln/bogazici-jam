@@ -8,5 +8,10 @@ namespace Bogazici.Player
         [Space(7)]
         [Header("JUMP PROPERTIES")]
         public float JumpPower;
+
+        [Space(7)]
+        [Header("ROLL PROPERTIES")]
+        public float RollCooldown;
+        public float RollSpeed;
     }
 }

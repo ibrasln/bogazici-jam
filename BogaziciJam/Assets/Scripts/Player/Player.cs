@@ -15,6 +15,7 @@ namespace Bogazici.Player
         public PlayerJumpState JumpState { get; set; }
         public PlayerInAirState InAirState { get; set; }
         public PlayerCrouchState CrouchState { get; set; }
+        public PlayerRollState RollState { get; set; }
         #endregion
 
         protected override void Awake()
@@ -29,6 +30,7 @@ namespace Bogazici.Player
             JumpState = new(this, StateMachine, Data, "jump");
             InAirState = new(this, StateMachine, Data, "inAir");
             CrouchState = new(this, StateMachine, Data, "crouch");
+            RollState = new(this, StateMachine, Data, "roll");
         }
 
         protected override void Start()

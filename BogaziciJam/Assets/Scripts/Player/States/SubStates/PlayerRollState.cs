@@ -1,10 +1,12 @@
+using IboshEngine.Runtime.Extensions;
 using StateMachine;
+using UnityEngine;
 
 namespace Bogazici.Player.States
 {
-    public class PlayerGroundedState : PlayerState
+    public class PlayerRollState : PlayerAbilityState
     {
-        public PlayerGroundedState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
+        public PlayerRollState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {
         }
 
@@ -16,6 +18,8 @@ namespace Bogazici.Player.States
         public override void Enter()
         {
             base.Enter();
+
+            obj.InputHandler.UseRollInput();
         }
 
         public override void Exit()
@@ -27,8 +31,8 @@ namespace Bogazici.Player.States
         {
             base.LogicUpdate();
 
-            if (jumpInput && obj.CurrentVelocity.y < 0.01f) stateMachine.ChangeState(obj.JumpState);
-            else if (rollInput) stateMachine.ChangeState(obj.RollState);
+            if (Time.time >= startingTime + objData.RollCooldown) isAbilityDone = true;
+            else obj.Rb.SetVelocityX(objData.RollSpeed);
         }
 
         public override void PhysicsUpdate()

@@ -18,3 +18,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   JumpPower: 15
+  RollCooldown: 1
+  RollSpeed: 5

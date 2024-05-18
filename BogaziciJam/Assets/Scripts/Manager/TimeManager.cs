@@ -9,10 +9,5 @@ namespace Bogazici.Managers
         {
             Time.timeScale = value;
         }
-
-        private void Update()
-        {
-            Debug.Log(Time.timeScale);
-        }
     }
 }

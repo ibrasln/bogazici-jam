@@ -11,5 +11,8 @@ namespace Bogazici.Entity
         [Header("GROUND CHECK PROPERTIES")]
         public float GroundCheckRadius;
         public LayerMask WhatIsGround;
+
+        [Header("HEALTH")]
+        public int MaxHealth;
     }
 }

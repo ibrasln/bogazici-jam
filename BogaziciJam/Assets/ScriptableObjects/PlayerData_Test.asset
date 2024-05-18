@@ -17,6 +17,7 @@ MonoBehaviour:
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  MaxHealth: 10
   JumpPower: 15
   RollCooldown: 0.3
   RollSpeed: 15

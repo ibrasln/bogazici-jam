@@ -82,6 +82,11 @@ namespace Bogazici.Player
             base.OnDrawGizmos();
         }
 
+        public override bool CanFlip(int xInput)
+        {
+            return xInput != 0 && xInput != FacingDirection;
+        }
+
         private void ChangeColor()
         {
             _sr.color = Color.red;

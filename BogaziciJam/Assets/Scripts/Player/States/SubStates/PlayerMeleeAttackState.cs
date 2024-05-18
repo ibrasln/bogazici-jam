@@ -1,11 +1,10 @@
-using IboshEngine.Runtime.Extensions;
 using StateMachine;
 
 namespace Bogazici.Player.States
 {
-    public class PlayerInAirState : PlayerState
+    public class PlayerMeleeAttackState : PlayerAbilityState
     {
-        public PlayerInAirState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
+        public PlayerMeleeAttackState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {
         }
 
@@ -17,6 +16,9 @@ namespace Bogazici.Player.States
         public override void Enter()
         {
             base.Enter();
+
+            obj.InputHandler.UseAttackInput();
+            stateMachine.ChangeState(obj.IdleState);
         }
 
         public override void Exit()
@@ -27,14 +29,16 @@ namespace Bogazici.Player.States
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-
-            if (onGround && obj.CurrentVelocity.y < .01f) stateMachine.ChangeState(obj.IdleState);
-            else obj.Rb.SetVelocityX(xInput * objData.MoveSpeed);
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+        }
+
+        public override void AnimationFinishTrigger()
+        {
+            isAbilityDone = true;
         }
     }
 }

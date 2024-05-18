@@ -2,9 +2,9 @@ using StateMachine;
 
 namespace Bogazici.Player.States
 {
-    public class PlayerAttackState : PlayerAbilityState
+    public class PlayerRangedAttackState : PlayerAbilityState
     {
-        public PlayerAttackState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
+        public PlayerRangedAttackState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {
         }
 
@@ -18,6 +18,7 @@ namespace Bogazici.Player.States
             base.Enter();
 
             obj.InputHandler.UseAttackInput();
+            stateMachine.ChangeState(obj.IdleState);
         }
 
         public override void Exit()

@@ -20,3 +20,5 @@ MonoBehaviour:
   JumpPower: 15
   RollCooldown: 0.3
   RollSpeed: 15
+  ChangeTimeUsageCooldown: 20
+  ChangeTimeCooldown: 1

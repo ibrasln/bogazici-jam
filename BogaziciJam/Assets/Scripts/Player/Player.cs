@@ -1,4 +1,6 @@
+using Bogazici.Managers;
 using Bogazici.Player.States;
+using UnityEngine;
 
 namespace Bogazici.Player
 {
@@ -16,11 +18,23 @@ namespace Bogazici.Player
         public PlayerInAirState InAirState { get; set; }
         public PlayerCrouchState CrouchState { get; set; }
         public PlayerRollState RollState { get; set; }
+        public PlayerMeleeAttackState MeleeAttackState { get; set; }
+        public PlayerRangedAttackState RangedAttackState { get; set; }
+        public PlayerChangeTimeState ChangeTimeState { get; set; }
         #endregion
+
+        #region Temporary
+        private SpriteRenderer _sr;
+        #endregion
+
+        public bool CanChangeTime;
+        private float _changeTimeUsageTimer;
 
         protected override void Awake()
         {
             base.Awake();
+
+            _sr = GetComponent<SpriteRenderer>();
 
             InputHandler = GetComponent<PlayerInputHandler>();
             StateMachine = new();
@@ -31,6 +45,9 @@ namespace Bogazici.Player
             InAirState = new(this, StateMachine, Data, "inAir");
             CrouchState = new(this, StateMachine, Data, "crouch");
             RollState = new(this, StateMachine, Data, "roll");
+            MeleeAttackState = new(this, StateMachine, Data, "meleeAttack");
+            RangedAttackState = new(this, StateMachine, Data, "rangedAttack");
+            ChangeTimeState = new(this, StateMachine, Data, "changeTime");
         }
 
         protected override void Start()
@@ -38,6 +55,7 @@ namespace Bogazici.Player
             base.Start();
 
             StateMachine.Initialize(IdleState);
+            GameManager.Instance.OnGameTimeChanged += ChangeColor;
         }
 
         protected override void FixedUpdate()
@@ -52,6 +70,9 @@ namespace Bogazici.Player
             base.Update();
 
             StateMachine.CurrentState.LogicUpdate();
+
+            if (_changeTimeUsageTimer <= 0f) CanChangeTime = true;
+            else _changeTimeUsageTimer -= Time.deltaTime;
         }
 
         protected override void OnDrawGizmos()
@@ -59,6 +80,18 @@ namespace Bogazici.Player
             base.OnDrawGizmos();
         }
 
+        private void ChangeColor()
+        {
+            _sr.color = Color.red;
+        }
+
+        public void ResetChangeTimeUsageTimer()
+        {
+            _changeTimeUsageTimer = Data.ChangeTimeUsageCooldown;
+            CanChangeTime = false;
+        }
+
         public void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
     }
+
 }

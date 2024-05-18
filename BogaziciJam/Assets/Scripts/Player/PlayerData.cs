@@ -13,5 +13,10 @@ namespace Bogazici.Player
         [Header("ROLL PROPERTIES")]
         public float RollCooldown;
         public float RollSpeed;
+
+        [Space(7)]
+        [Header("CHANGE TIME PROPERTIES")]
+        public float ChangeTimeUsageCooldown;
+        public float ChangeTimeCooldown;
     }
 }

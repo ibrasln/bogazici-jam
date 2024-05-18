@@ -1,11 +1,13 @@
+using Bogazici.Managers;
 using IboshEngine.Runtime.Extensions;
 using StateMachine;
+using UnityEngine;
 
 namespace Bogazici.Player.States
 {
-    public class PlayerMoveState : PlayerGroundedState
+    public class PlayerChangeTimeState : PlayerState
     {
-        public PlayerMoveState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
+        public PlayerChangeTimeState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {
         }
 
@@ -17,24 +19,23 @@ namespace Bogazici.Player.States
         public override void Enter()
         {
             base.Enter();
+
+            obj.Rb.SetVelocityZero();
+            GameManager.Instance.ChangeTime();
         }
 
         public override void Exit()
         {
             base.Exit();
+
+            obj.ResetChangeTimeUsageTimer();
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
-            if (xInput == 0) stateMachine.ChangeState(obj.IdleState);
-            else if (yInput < 0) stateMachine.ChangeState(obj.CrouchState);
-            else
-            {
-                obj.Rb.SetVelocityX(xInput * objData.MoveSpeed);
-                if (obj.CanFlip((int)xInput)) obj.Flip();
-            }
+            if (Time.time >= startingTime + objData.ChangeTimeCooldown) stateMachine.ChangeState(obj.IdleState);
         }
 
         public override void PhysicsUpdate()

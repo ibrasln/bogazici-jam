@@ -5,11 +5,12 @@ namespace Bogazici.Player
 {
     public class PlayerState : EntityState<Player, PlayerData>
     {
-        protected int xInput;
-        protected int yInput;
+        protected float xInput;
+        protected float yInput;
         protected bool jumpInput;
         protected bool attackInput;
         protected bool rollInput;
+        protected bool changeTimeInput;
 
         protected bool onGround;
 
@@ -44,6 +45,7 @@ namespace Bogazici.Player
             jumpInput = obj.InputHandler.JumpInput;
             attackInput = obj.InputHandler.AttackInput;
             rollInput = obj.InputHandler.RollInput;
+            changeTimeInput = obj.InputHandler.ChangeTimeInput;
         }
 
         public override void PhysicsUpdate()

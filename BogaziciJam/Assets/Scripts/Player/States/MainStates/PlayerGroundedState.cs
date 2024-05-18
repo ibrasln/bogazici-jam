@@ -1,3 +1,4 @@
+using Bogazici.Managers;
 using StateMachine;
 
 namespace Bogazici.Player.States
@@ -29,6 +30,22 @@ namespace Bogazici.Player.States
 
             if (jumpInput && obj.CurrentVelocity.y < 0.01f) stateMachine.ChangeState(obj.JumpState);
             else if (rollInput) stateMachine.ChangeState(obj.RollState);
+            else if (attackInput)
+            {
+                switch (GameManager.Instance.GameTime)
+                {
+                    case GameTime.Cyberpunk:
+                        stateMachine.ChangeState(obj.RangedAttackState);
+                        break;
+                    case GameTime.Japanese:
+                        stateMachine.ChangeState(obj.MeleeAttackState);
+                        break;
+                }
+            }
+            else if (changeTimeInput && obj.CanChangeTime)
+            {
+                stateMachine.ChangeState(obj.ChangeTimeState);
+            }
         }
 
         public override void PhysicsUpdate()

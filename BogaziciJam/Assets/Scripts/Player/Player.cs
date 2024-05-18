@@ -60,6 +60,7 @@ namespace Bogazici.Player
 
         protected override void FixedUpdate()
         {
+            if (GameManager.Instance.IsGamePaused) return;
             base.FixedUpdate();
 
             StateMachine.CurrentState.PhysicsUpdate();
@@ -67,6 +68,7 @@ namespace Bogazici.Player
 
         protected override void Update()
         {
+            if (GameManager.Instance.IsGamePaused) return;
             base.Update();
 
             StateMachine.CurrentState.LogicUpdate();

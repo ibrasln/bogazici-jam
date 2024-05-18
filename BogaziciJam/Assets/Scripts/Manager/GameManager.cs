@@ -11,6 +11,8 @@ namespace Bogazici.Managers
 
         public Player.Player Player;
 
+        public bool IsGamePaused;
+
         protected override void Awake()
         {
             base.Awake();
@@ -31,6 +33,11 @@ namespace Bogazici.Managers
             }
 
             OnGameTimeChanged?.Invoke();
+        }
+
+        public void SetPauseState(bool state)
+        {
+            IsGamePaused = state;
         }
     }
 

@@ -12,6 +12,7 @@ namespace Bogazici.Player
         public bool JumpInput { get; private set; }
         public bool AttackInput { get; private set; }
         public bool ChangeTimeInput { get; private set; }
+        public bool PauseInput { get; private set; }
 
         public void OnMove(InputAction.CallbackContext context)
         {
@@ -77,8 +78,21 @@ namespace Bogazici.Player
             }
         }
 
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                PauseInput = true;
+            }
+            else if (context.canceled)
+            {
+                PauseInput = false;
+            }
+        }
+
         public void UseJumpInput() => JumpInput = false;
         public void UseRollInput() => RollInput = false;
         public void UseAttackInput() => AttackInput = false;
+        public void UseChangeTimeInput() => ChangeTimeInput = false;
     }
 }

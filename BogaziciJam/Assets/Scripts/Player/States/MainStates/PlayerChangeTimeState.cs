@@ -21,6 +21,7 @@ namespace Bogazici.Player.States
             base.Enter();
 
             obj.Rb.SetVelocityZero();
+            obj.InputHandler.UseChangeTimeInput();
             GameManager.Instance.ChangeTime();
         }
 

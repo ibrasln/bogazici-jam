@@ -29,7 +29,11 @@ namespace Bogazici.Player.States
             base.LogicUpdate();
 
             if (onGround && obj.CurrentVelocity.y < .01f) stateMachine.ChangeState(obj.IdleState);
-            else obj.Rb.SetVelocityX(xInput * objData.MoveSpeed);
+            else
+            {
+                obj.Rb.SetVelocityX(xInput * objData.MoveSpeed);
+                if (obj.CanFlip((int)xInput)) obj.Flip();
+            }
         }
 
         public override void PhysicsUpdate()

@@ -29,7 +29,7 @@ namespace Bogazici.Player.States
             base.LogicUpdate();
 
             if (jumpInput && obj.CurrentVelocity.y < 0.01f) stateMachine.ChangeState(obj.JumpState);
-            else if (rollInput) stateMachine.ChangeState(obj.RollState);
+            else if (dashInput) stateMachine.ChangeState(obj.DashState);
             else if (attackInput)
             {
                 switch (GameManager.Instance.GameTime)

@@ -18,7 +18,6 @@ namespace Bogazici.Player.States
             base.Enter();
 
             obj.InputHandler.UseAttackInput();
-            stateMachine.ChangeState(obj.IdleState);
         }
 
         public override void Exit()

@@ -1,12 +1,11 @@
-using IboshEngine.Runtime.Extensions;
 using StateMachine;
 using UnityEngine;
 
 namespace Bogazici.Player.States
 {
-    public class PlayerRollState : PlayerAbilityState
+    public class PlayerGetHitState : PlayerState
     {
-        public PlayerRollState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
+        public PlayerGetHitState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {
         }
 
@@ -19,7 +18,8 @@ namespace Bogazici.Player.States
         {
             base.Enter();
 
-            obj.InputHandler.UseRollInput();
+            //TODO: Shake Camera
+            Knockback();
         }
 
         public override void Exit()
@@ -31,13 +31,17 @@ namespace Bogazici.Player.States
         {
             base.LogicUpdate();
 
-            if (Time.time >= startingTime + objData.RollCooldown) isAbilityDone = true;
-            else obj.Rb.SetVelocityX(objData.RollSpeed);
+            if (Time.time >= startingTime + objData.KnockbackTime) stateMachine.ChangeState(obj.IdleState);
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
+        }
+
+        public void Knockback()
+        {
+            obj.Rb.AddForce(objData.KnockbackForce * obj.KnockbackDirection, ForceMode2D.Impulse);
         }
     }
 }

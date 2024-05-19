@@ -9,7 +9,7 @@ namespace Bogazici.Player
         protected float yInput;
         protected bool jumpInput;
         protected bool attackInput;
-        protected bool rollInput;
+        protected bool dashInput;
         protected bool changeTimeInput;
 
         protected bool onGround;
@@ -44,8 +44,10 @@ namespace Bogazici.Player
             yInput = obj.InputHandler.YInput;
             jumpInput = obj.InputHandler.JumpInput;
             attackInput = obj.InputHandler.AttackInput;
-            rollInput = obj.InputHandler.RollInput;
+            dashInput = obj.InputHandler.DashInput;
             changeTimeInput = obj.InputHandler.ChangeTimeInput;
+
+            obj.Anim.SetFloat("yVelocity", obj.CurrentVelocity.y);
         }
 
         public override void PhysicsUpdate()

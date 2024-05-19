@@ -10,13 +10,27 @@ namespace Bogazici.Player
         public float JumpPower;
 
         [Space(7)]
-        [Header("ROLL PROPERTIES")]
-        public float RollCooldown;
-        public float RollSpeed;
+        [Header("DASH PROPERTIES")]
+        public float DashCooldown;
+        public float DashSpeed;
 
         [Space(7)]
         [Header("CHANGE TIME PROPERTIES")]
         public float ChangeTimeUsageCooldown;
         public float ChangeTimeCooldown;
+
+        [Space(7)]
+        [Header("AFTER IMAGE PROPERTIES")]
+        public float DistanceBetweenAfterImages;
+        public GameObject AfterImagePrefab;
+
+        [Space(7)]
+        [Header("AMMO PROPERTIES")]
+        public GameObject AmmoPrefab;
+
+        [Space(7)]
+        [Header("KNOCKBACK PROPERTIES")]
+        public float KnockbackTime;
+        public Vector2 KnockbackForce;
     }
 }

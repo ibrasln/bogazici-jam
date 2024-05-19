@@ -1,17 +1,15 @@
+using IboshEngine.Runtime.Interfaces;
+using System;
 using UnityEngine;
 
 namespace Bogazici.Entity
 {
-    public class Entity<T> : MonoBehaviour where T : EntityData
+    public class Entity<T> : MonoBehaviour, IDamageable where T : EntityData
     {
         #region Components
         public Animator Anim { get; private set; }
         public Rigidbody2D Rb { get; private set; }
         #endregion
-
-        public T Data;
-
-        public int FacingDirection { get; private set; }
 
         #region Collision Checks
         [SerializeField] private Transform groundCheckTransform;
@@ -21,7 +19,14 @@ namespace Bogazici.Entity
         }
         #endregion
 
+        public T Data;
+        public Health.Health Health { get; private set; }
+
+        public int FacingDirection { get; private set; }
+
         public Vector2 CurrentVelocity { get; private set; }
+
+        public Action OnDeath;
 
         protected virtual void Awake()
         {
@@ -32,6 +37,7 @@ namespace Bogazici.Entity
         protected virtual void Start()
         {
             FacingDirection = 1;
+            Health = new(Data.MaxHealth);
         }
 
         protected virtual void Update()
@@ -41,7 +47,7 @@ namespace Bogazici.Entity
 
         protected virtual void FixedUpdate() { }
 
-        public bool CanFlip(int xInput) { return xInput != 0 && xInput != FacingDirection; }
+        public virtual bool CanFlip(int xMovement) { return false; }
         public void Flip()
         {
             FacingDirection *= -1;
@@ -51,6 +57,14 @@ namespace Bogazici.Entity
         protected virtual void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(groundCheckTransform.position, Data.GroundCheckRadius);
+        }
+
+        public virtual void TakeDamage(int damage)
+        {
+            Health.CurrentHealth -= damage;
+
+            if (Health.CurrentHealth <= 0) OnDeath?.Invoke();
+            //TODO: Add knockback.
         }
     }
 }

@@ -1,5 +1,6 @@
 using Bogazici.Managers;
 using Bogazici.Player.States;
+using IboshEngine.Runtime.ObjectPool;
 using UnityEngine;
 
 namespace Bogazici.Player
@@ -17,15 +18,30 @@ namespace Bogazici.Player
         public PlayerJumpState JumpState { get; set; }
         public PlayerInAirState InAirState { get; set; }
         public PlayerCrouchState CrouchState { get; set; }
-        public PlayerRollState RollState { get; set; }
+        public PlayerDashState DashState { get; set; }
         public PlayerMeleeAttackState MeleeAttackState { get; set; }
         public PlayerRangedAttackState RangedAttackState { get; set; }
         public PlayerChangeTimeState ChangeTimeState { get; set; }
+        public PlayerGetHitState GetHitState { get; set; }
         #endregion
 
         #region Temporary
         private SpriteRenderer _sr;
         #endregion
+
+        #region Object Pools
+        public ObjectPool<AfterImage> AfterImageObjectPool;
+        public ObjectPool<Ammo.Ammo> AmmoObjectPool;
+        #endregion
+
+        public Transform ShootPosition;
+
+        public Vector2 KnockbackDirection;
+
+        [Space(7)]
+        [Header("PARENT OBJECTS OF POOLS")]
+        [SerializeField] private Transform afterImagesParent;
+        [SerializeField] private Transform ammosParent;
 
         public bool CanChangeTime;
         private float _changeTimeUsageTimer;
@@ -41,13 +57,17 @@ namespace Bogazici.Player
 
             IdleState = new(this, StateMachine, Data, "idle");
             MoveState = new(this, StateMachine, Data, "move");
-            JumpState = new(this, StateMachine, Data, "jump");
+            JumpState = new(this, StateMachine, Data, "inAir");
             InAirState = new(this, StateMachine, Data, "inAir");
             CrouchState = new(this, StateMachine, Data, "crouch");
-            RollState = new(this, StateMachine, Data, "roll");
+            DashState = new(this, StateMachine, Data, "dash");
             MeleeAttackState = new(this, StateMachine, Data, "meleeAttack");
             RangedAttackState = new(this, StateMachine, Data, "rangedAttack");
             ChangeTimeState = new(this, StateMachine, Data, "changeTime");
+            GetHitState = new(this, StateMachine, Data, "hit");
+
+            AfterImageObjectPool = new(Data.AfterImagePrefab, afterImagesParent, 10);
+            AmmoObjectPool = new(Data.AmmoPrefab, ammosParent, 10);
         }
 
         protected override void Start()
@@ -60,6 +80,7 @@ namespace Bogazici.Player
 
         protected override void FixedUpdate()
         {
+            if (GameManager.Instance.IsGamePaused) return;
             base.FixedUpdate();
 
             StateMachine.CurrentState.PhysicsUpdate();
@@ -67,9 +88,12 @@ namespace Bogazici.Player
 
         protected override void Update()
         {
+            if (GameManager.Instance.IsGamePaused) return;
             base.Update();
 
             StateMachine.CurrentState.LogicUpdate();
+
+            if (Input.GetKeyDown(KeyCode.H)) StateMachine.ChangeState(GetHitState);
 
             if (_changeTimeUsageTimer <= 0f) CanChangeTime = true;
             else _changeTimeUsageTimer -= Time.deltaTime;
@@ -78,6 +102,24 @@ namespace Bogazici.Player
         protected override void OnDrawGizmos()
         {
             base.OnDrawGizmos();
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+
+            StateMachine.ChangeState(GetHitState);
+        }
+
+        public void Fire()
+        {
+            Ammo.Ammo ammo = AmmoObjectPool.Pull();
+            ammo.gameObject.SetActive(true);
+        }
+
+        public override bool CanFlip(int xInput)
+        {
+            return xInput != 0 && xInput != FacingDirection;
         }
 
         private void ChangeColor()
@@ -90,6 +132,8 @@ namespace Bogazici.Player
             _changeTimeUsageTimer = Data.ChangeTimeUsageCooldown;
             CanChangeTime = false;
         }
+
+        public void SetKnockbackDirection(Vector2 direction) => KnockbackDirection = direction;
 
         public void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
     }

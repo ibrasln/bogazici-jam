@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a434eb94292bda46bdd218803a71239, type: 3}
   m_Name: SamuraiBossData
   m_EditorClassIdentifier: 
-  MoveSpeed: 5
+  MoveSpeed: 3
   GroundCheckRadius: 0.1
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  AgroDistance: 5
-  AttackCooldown: 1
+  MaxHealth: 250
+  AgroDistance: 2.5
+  AttackCooldown: 0.5
   MovementOutCooldown: 0.7
+  AttackMovementSpeed: 3

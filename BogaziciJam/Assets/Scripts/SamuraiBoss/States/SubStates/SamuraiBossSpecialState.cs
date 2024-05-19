@@ -1,10 +1,8 @@
-using Bogazici.SamuraiBoss.States;
 using StateMachine;
-using UnityEngine;
 
 namespace Bogazici.SamuraiBoss
 {
-    public class SamuraiBossSpecialState : SamuraiAbilityState
+    public class SamuraiBossSpecialState : SamuraiBossAttackState
     {
         public SamuraiBossSpecialState(SamuraiBoss obj, StateMachine<SamuraiBoss, SamuraiBossData> stateMachine, SamuraiBossData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {
@@ -18,20 +16,16 @@ namespace Bogazici.SamuraiBoss
         public override void Enter()
         {
             base.Enter();
-            obj.InputHandler.UseLowAttackInput();
         }
 
         public override void Exit()
         {
             base.Exit();
-
-
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            Debug.Log("Special State");
 
             isAbilityDone = true;
         }

@@ -1,9 +1,8 @@
-using Bogazici.SamuraiBoss.States;
 using StateMachine;
 
 namespace Bogazici.SamuraiBoss
 {
-    public class SamuraiBossMidAttackState : SamuraiAbilityState
+    public class SamuraiBossMidAttackState : SamuraiBossAttackState
     {
         public SamuraiBossMidAttackState
    (SamuraiBoss obj, StateMachine<SamuraiBoss, SamuraiBossData> stateMachine, SamuraiBossData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
@@ -18,14 +17,11 @@ namespace Bogazici.SamuraiBoss
         public override void Enter()
         {
             base.Enter();
-            obj.InputHandler.UseMidAttackInput();
         }
 
         public override void Exit()
         {
             base.Exit();
-
-
         }
 
         public override void LogicUpdate()

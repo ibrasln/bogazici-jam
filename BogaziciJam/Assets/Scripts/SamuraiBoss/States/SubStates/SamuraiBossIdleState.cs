@@ -27,11 +27,11 @@ namespace Bogazici.SamuraiBoss.States
             base.Exit();
         }
 
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
+            Debug.Log(GetMoveDirection());
 
             if (GetPlayerDistance() > objData.AgroDistance)
             {
@@ -40,17 +40,8 @@ namespace Bogazici.SamuraiBoss.States
             }
             else if (Time.time >= startingTime + objData.AttackCooldown)
             {
-                stateMachine.ChangeState(obj.GetNextState());
+                stateMachine.ChangeState(obj.AttackState);
             }
-
-
-            //if (xInput != 0) stateMachine.ChangeState(obj.MoveState);
-            //if (midAttackInput) stateMachine.ChangeState(obj.MidAttackState);
-            //if (lowAttackInput) stateMachine.ChangeState(obj.LowAttackState);
-            //if (overHeadAttackInput) stateMachine.ChangeState(obj.OverHeadAttackState);
-            //if (specialInput) stateMachine.ChangeState(obj.SpecialState);
-
-
         }
 
         public override void PhysicsUpdate()

@@ -1,9 +1,8 @@
-using Bogazici.SamuraiBoss.States;
 using StateMachine;
 
 namespace Bogazici.SamuraiBoss
 {
-    public class SamuraiBossOverHeadAttackState : SamuraiAbilityState
+    public class SamuraiBossOverHeadAttackState : SamuraiBossAttackState
     {
         public SamuraiBossOverHeadAttackState(SamuraiBoss obj, StateMachine<SamuraiBoss, SamuraiBossData> stateMachine, SamuraiBossData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {
@@ -17,7 +16,6 @@ namespace Bogazici.SamuraiBoss
         public override void Enter()
         {
             base.Enter();
-            obj.InputHandler.UseLowAttackInput();
         }
 
         public override void Exit()
@@ -34,7 +32,5 @@ namespace Bogazici.SamuraiBoss
         {
             base.PhysicsUpdate();
         }
-
-
     }
 }

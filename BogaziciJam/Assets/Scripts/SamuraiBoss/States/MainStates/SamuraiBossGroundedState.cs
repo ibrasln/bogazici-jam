@@ -28,6 +28,14 @@ namespace Bogazici.SamuraiBoss.States
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            if (GetMoveDirection() > .01f)
+            {
+                obj.FacingDirection = 1;
+            }
+            else if (GetMoveDirection() < -.01f)
+            {
+                obj.FacingDirection = -1;
+            }
         }
 
         public override void PhysicsUpdate()
@@ -37,11 +45,11 @@ namespace Bogazici.SamuraiBoss.States
 
         public float GetPlayerDistance()
         {
-            return Vector3.Distance(GameManager.Instance.Player.transform.position, obj.transform.position);
+            return Vector3.Distance(GameManager.Instance.CurrentPlayer.transform.position, obj.transform.position);
         }
         public float GetMoveDirection()
         {
-            return Vector3.Normalize(GameManager.Instance.Player.transform.position - obj.transform.position).x;
+            return Vector3.Normalize(GameManager.Instance.CurrentPlayer.transform.position - obj.transform.position).x;
         }
     }
 }

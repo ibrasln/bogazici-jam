@@ -11,5 +11,9 @@ namespace Bogazici.SamuraiBoss
         public float AttackCooldown;
         public float MovementOutCooldown;
 
+
+        [Space(7)]
+        [Header("ATTACK SETTINGS")]
+        public float AttackMovementSpeed;
     }
 }

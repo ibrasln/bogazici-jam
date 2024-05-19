@@ -73,7 +73,6 @@ namespace Bogazici.Player
             base.Start();
 
             StateMachine.Initialize(IdleState);
-            GameManager.Instance.OnGameTimeChanged += ChangeColor;
         }
 
         protected override void FixedUpdate()
@@ -90,8 +89,6 @@ namespace Bogazici.Player
             base.Update();
 
             StateMachine.CurrentState.LogicUpdate();
-
-            if (Input.GetKeyDown(KeyCode.H)) StateMachine.ChangeState(GetHitState);
 
             if (_changeTimeUsageTimer <= 0f) CanChangeTime = true;
             else _changeTimeUsageTimer -= Time.deltaTime;

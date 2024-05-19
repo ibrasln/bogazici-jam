@@ -50,9 +50,6 @@ namespace Bogazici.SamuraiBoss
         protected override void FixedUpdate()
         {
             if (GameManager.Instance.IsGamePaused) return;
-            {
-
-            }
             base.FixedUpdate();
 
             StateMachine.CurrentState.PhysicsUpdate();

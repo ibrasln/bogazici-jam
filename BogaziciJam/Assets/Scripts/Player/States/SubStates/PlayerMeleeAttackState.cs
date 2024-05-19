@@ -5,7 +5,7 @@ namespace Bogazici.Player.States
 {
     public class PlayerMeleeAttackState : PlayerAbilityState
     {
-        private int _attackCounter;
+        private int _attackCounter = 1;
 
         public PlayerMeleeAttackState(Player obj, StateMachine<Player, PlayerData> stateMachine, PlayerData objData, string animBoolName) : base(obj, stateMachine, objData, animBoolName)
         {

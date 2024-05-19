@@ -8,7 +8,7 @@ namespace Bogazici.Player
     public class Player : Entity.Entity<PlayerData>
     {
         #region Components
-        public PlayerInputHandler InputHandler { get; set; }
+        public PlayerInputHandler InputHandler;
         #endregion
 
         #region State Machine
@@ -19,8 +19,6 @@ namespace Bogazici.Player
         public PlayerInAirState InAirState { get; set; }
         public PlayerCrouchState CrouchState { get; set; }
         public PlayerDashState DashState { get; set; }
-        public PlayerMeleeAttackState MeleeAttackState { get; set; }
-        public PlayerRangedAttackState RangedAttackState { get; set; }
         public PlayerChangeTimeState ChangeTimeState { get; set; }
         public PlayerGetHitState GetHitState { get; set; }
         #endregion
@@ -33,6 +31,8 @@ namespace Bogazici.Player
         public ObjectPool<AfterImage> AfterImageObjectPool;
         public ObjectPool<Ammo.Ammo> AmmoObjectPool;
         #endregion
+
+        public PlayerType PlayerType;
 
         public Transform ShootPosition;
 
@@ -52,7 +52,7 @@ namespace Bogazici.Player
 
             _sr = GetComponent<SpriteRenderer>();
 
-            InputHandler = GetComponent<PlayerInputHandler>();
+            //InputHandler = GetComponent<PlayerInputHandler>();
             StateMachine = new();
 
             IdleState = new(this, StateMachine, Data, "idle");
@@ -61,8 +61,6 @@ namespace Bogazici.Player
             InAirState = new(this, StateMachine, Data, "inAir");
             CrouchState = new(this, StateMachine, Data, "crouch");
             DashState = new(this, StateMachine, Data, "dash");
-            MeleeAttackState = new(this, StateMachine, Data, "meleeAttack");
-            RangedAttackState = new(this, StateMachine, Data, "rangedAttack");
             ChangeTimeState = new(this, StateMachine, Data, "changeTime");
             GetHitState = new(this, StateMachine, Data, "hit");
 
@@ -111,12 +109,6 @@ namespace Bogazici.Player
             StateMachine.ChangeState(GetHitState);
         }
 
-        public void Fire()
-        {
-            Ammo.Ammo ammo = AmmoObjectPool.Pull();
-            ammo.gameObject.SetActive(true);
-        }
-
         public override bool CanFlip(int xInput)
         {
             return xInput != 0 && xInput != FacingDirection;
@@ -135,14 +127,14 @@ namespace Bogazici.Player
 
         public void SetKnockbackDirection(Vector2 direction) => KnockbackDirection = direction;
 
-        //public void CreateAttackHitbox()
-        //{
-        //    Physics2D.OverlapCircle()
-        //}
-
         public void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
         public virtual void AnimationStartMovementTrigger() => StateMachine.CurrentState.AnimationStartMovementTrigger();
         public virtual void AnimationStopMovementTrigger() => StateMachine.CurrentState.AnimationStopMovementTrigger();
     }
 
+    public enum PlayerType
+    {
+        CyberBoy,
+        Samurai
+    }
 }

@@ -1,4 +1,3 @@
-using Bogazici.Managers;
 using StateMachine;
 
 namespace Bogazici.Player.States
@@ -32,13 +31,19 @@ namespace Bogazici.Player.States
             else if (dashInput) stateMachine.ChangeState(obj.DashState);
             else if (attackInput)
             {
-                switch (GameManager.Instance.GameTime)
+                switch (obj.PlayerType)
                 {
-                    case GameTime.Cyberpunk:
-                        stateMachine.ChangeState(obj.RangedAttackState);
+                    case PlayerType.CyberBoy:
+                        if (obj.gameObject.TryGetComponent(out CyberBoy cyberBoy))
+                        {
+                            cyberBoy.StateMachine.ChangeState(cyberBoy.AttackState);
+                        }
                         break;
-                    case GameTime.Japanese:
-                        stateMachine.ChangeState(obj.MeleeAttackState);
+                    case PlayerType.Samurai:
+                        if (obj.gameObject.TryGetComponent(out Samurai samurai))
+                        {
+                            samurai.StateMachine.ChangeState(samurai.AttackState);
+                        }
                         break;
                 }
             }

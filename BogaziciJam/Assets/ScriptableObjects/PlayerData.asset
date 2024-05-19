@@ -30,3 +30,8 @@ MonoBehaviour:
   KnockbackForce: {x: 6, y: 10}
   AttackMovementSpeed: 4
   AttackAmount: 3
+  WhatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 128
+  MeleeAttackRadius: 1
+  MeleeAttackDamage: 10

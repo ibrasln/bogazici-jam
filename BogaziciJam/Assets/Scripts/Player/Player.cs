@@ -22,6 +22,7 @@ namespace Bogazici.Player
         public PlayerMeleeAttackState MeleeAttackState { get; set; }
         public PlayerRangedAttackState RangedAttackState { get; set; }
         public PlayerChangeTimeState ChangeTimeState { get; set; }
+        public PlayerGetHitState GetHitState { get; set; }
         #endregion
 
         #region Temporary
@@ -33,7 +34,9 @@ namespace Bogazici.Player
         public ObjectPool<Ammo.Ammo> AmmoObjectPool;
         #endregion
 
-        [HideInInspector] public Transform ShootPosition;
+        public Transform ShootPosition;
+
+        public Vector2 KnockbackDirection;
 
         [Space(7)]
         [Header("PARENT OBJECTS OF POOLS")]
@@ -61,11 +64,10 @@ namespace Bogazici.Player
             MeleeAttackState = new(this, StateMachine, Data, "meleeAttack");
             RangedAttackState = new(this, StateMachine, Data, "rangedAttack");
             ChangeTimeState = new(this, StateMachine, Data, "changeTime");
+            GetHitState = new(this, StateMachine, Data, "hit");
 
             AfterImageObjectPool = new(Data.AfterImagePrefab, afterImagesParent, 10);
             AmmoObjectPool = new(Data.AmmoPrefab, ammosParent, 10);
-
-            ShootPosition = transform.Find("ShootPosition");
         }
 
         protected override void Start()
@@ -91,6 +93,8 @@ namespace Bogazici.Player
 
             StateMachine.CurrentState.LogicUpdate();
 
+            if (Input.GetKeyDown(KeyCode.H)) StateMachine.ChangeState(GetHitState);
+
             if (_changeTimeUsageTimer <= 0f) CanChangeTime = true;
             else _changeTimeUsageTimer -= Time.deltaTime;
         }
@@ -98,6 +102,13 @@ namespace Bogazici.Player
         protected override void OnDrawGizmos()
         {
             base.OnDrawGizmos();
+        }
+
+        public override void TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+
+            StateMachine.ChangeState(GetHitState);
         }
 
         public void Fire()
@@ -121,6 +132,8 @@ namespace Bogazici.Player
             _changeTimeUsageTimer = Data.ChangeTimeUsageCooldown;
             CanChangeTime = false;
         }
+
+        public void SetKnockbackDirection(Vector2 direction) => KnockbackDirection = direction;
 
         public void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
     }

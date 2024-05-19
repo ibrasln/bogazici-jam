@@ -59,7 +59,7 @@ namespace Bogazici.Entity
             Gizmos.DrawWireSphere(groundCheckTransform.position, Data.GroundCheckRadius);
         }
 
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             Health.CurrentHealth -= damage;
 

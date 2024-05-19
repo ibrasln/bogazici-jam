@@ -27,5 +27,10 @@ namespace Bogazici.Player
         [Space(7)]
         [Header("AMMO PROPERTIES")]
         public GameObject AmmoPrefab;
+
+        [Space(7)]
+        [Header("KNOCKBACK PROPERTIES")]
+        public float KnockbackTime;
+        public Vector2 KnockbackForce;
     }
 }

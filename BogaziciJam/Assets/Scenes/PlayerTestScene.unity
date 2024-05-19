@@ -2406,6 +2406,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -25}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1214187341 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1688609229794432163, guid: 5fff93a0e7c77cb43aee8f1564447e96, type: 3}
+  m_PrefabInstance: {fileID: 7472056569030181961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1247510777
 GameObject:
   m_ObjectHideFlags: 0
@@ -3480,6 +3485,10 @@ PrefabInstance:
       propertyPath: ammosParent
       value: 
       objectReference: {fileID: 1762564521}
+    - target: {fileID: 710322679212394798, guid: 5fff93a0e7c77cb43aee8f1564447e96, type: 3}
+      propertyPath: ShootPosition
+      value: 
+      objectReference: {fileID: 1214187341}
     - target: {fileID: 710322679212394798, guid: 5fff93a0e7c77cb43aee8f1564447e96, type: 3}
       propertyPath: afterImagesParent
       value: 

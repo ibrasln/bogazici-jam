@@ -26,3 +26,5 @@ MonoBehaviour:
   DistanceBetweenAfterImages: 0.7
   AfterImagePrefab: {fileID: 1077755648808778026, guid: fd59e154979424244b0ce99544a39b4c, type: 3}
   AmmoPrefab: {fileID: 6428317963514017117, guid: a2b9ff708d095fb47967bbe46bd9bc6b, type: 3}
+  KnockbackTime: 1
+  KnockbackForce: {x: 6, y: 10}

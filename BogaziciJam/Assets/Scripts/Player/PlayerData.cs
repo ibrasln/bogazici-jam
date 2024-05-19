@@ -32,5 +32,11 @@ namespace Bogazici.Player
         [Header("KNOCKBACK PROPERTIES")]
         public float KnockbackTime;
         public Vector2 KnockbackForce;
+
+        [Space(7)]
+        [Header("ATTACK PROPERTIES")]
+        public float AttackMovementSpeed;
+        public int AttackAmount;
+        public LayerMask WhatIsEnemy;
     }
 }

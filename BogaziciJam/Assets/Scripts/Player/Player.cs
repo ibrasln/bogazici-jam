@@ -135,7 +135,14 @@ namespace Bogazici.Player
 
         public void SetKnockbackDirection(Vector2 direction) => KnockbackDirection = direction;
 
+        //public void CreateAttackHitbox()
+        //{
+        //    Physics2D.OverlapCircle()
+        //}
+
         public void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+        public virtual void AnimationStartMovementTrigger() => StateMachine.CurrentState.AnimationStartMovementTrigger();
+        public virtual void AnimationStopMovementTrigger() => StateMachine.CurrentState.AnimationStopMovementTrigger();
     }
 
 }

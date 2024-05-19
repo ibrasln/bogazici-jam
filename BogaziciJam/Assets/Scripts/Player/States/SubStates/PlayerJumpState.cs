@@ -19,7 +19,7 @@ namespace Bogazici.Player.States
             base.Enter();
 
             obj.Rb.SetVelocityY(objData.JumpPower);
-            obj.InputHandler.UseJumpInput();
+            //obj.InputHandler.UseJumpInput();
             isAbilityDone = true;
         }
 

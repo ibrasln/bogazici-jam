@@ -46,5 +46,7 @@ namespace StateMachine
         }
 
         public virtual void AnimationFinishTrigger() { }
+        public virtual void AnimationStartMovementTrigger() { }
+        public virtual void AnimationStopMovementTrigger() { }
     }
 }

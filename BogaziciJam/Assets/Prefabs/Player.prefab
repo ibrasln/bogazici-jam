@@ -141,6 +141,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheckTransform: {fileID: 1818097444317629469}
   Data: {fileID: 11400000, guid: e3e4e19a48e3672499856ad25fee476c, type: 2}
+  ShootPosition: {fileID: 1688609229794432163}
+  KnockbackDirection: {x: 0, y: 0}
   afterImagesParent: {fileID: 0}
   ammosParent: {fileID: 0}
   CanChangeTime: 0
@@ -303,7 +305,7 @@ Animator:
   m_GameObject: {fileID: 680218156536587210}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 831e13d5c652d2741a2cc0833a660031, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4ae8279b58f067540894c44ef1aeff85, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -326,7 +328,7 @@ GameObject:
   m_Layer: 0
   m_Name: ShootPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -339,7 +341,7 @@ Transform:
   m_GameObject: {fileID: 1089336584154116466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.946, y: 0.319, z: 0}
+  m_LocalPosition: {x: 0.74, y: 0.315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

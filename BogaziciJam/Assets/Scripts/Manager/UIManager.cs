@@ -3,6 +3,7 @@ using IboshEngine.Runtime.AudioManagement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Bogazici.Managers
 {
@@ -16,10 +17,21 @@ namespace Bogazici.Managers
         [SerializeField] private AnimationSequencerController panelOpenAnim;
         [SerializeField] private AnimationSequencerController panelCloseAnim;
 
+        [Header("HealthBar Settings")]
+        [SerializeField] private Image _bossHealthBar;
+        [SerializeField] private Image _playerHealthBar;
+
+        [SerializeField] private Color _cyberpunkColor;
+        [SerializeField] private Color _sakuraColor;
+        private bool isCyberpunk = true;
+
         private void Start()
         {
             _canPressESC = true;
             _isPanelOpened = false;
+            SetBossHealthValue(0.4f);
+            isCyberpunk = false;
+            ChangeHealthBarColor();
         }
 
         public void ReturnToMainMenu()
@@ -52,5 +64,28 @@ namespace Bogazici.Managers
 
         public void SetMusicVolumeText() => musicVolumeText.text = MusicManager.Instance.MusicVolume.ToString();
         public void SetSoundEffectVolumeText() => soundEffectVolumeText.text = SoundEffectManager.Instance.SoundEffectVolume.ToString();
+
+        public void SetBossHealthValue(float value)
+        {
+            _bossHealthBar.fillAmount = value;
+        }
+        public void SetPlayerHealthValue(float value)
+        {
+            _playerHealthBar.fillAmount = value;
+        }
+        public void ChangeHealthBarColor()
+        {
+            if (isCyberpunk)
+            {
+                _bossHealthBar.color = _sakuraColor;
+                _playerHealthBar.color = _sakuraColor;
+            }
+            else
+            {
+                _bossHealthBar.color = _cyberpunkColor;
+                _playerHealthBar.color = _cyberpunkColor;
+            }
+            isCyberpunk = !isCyberpunk;
+        }
     }
 }

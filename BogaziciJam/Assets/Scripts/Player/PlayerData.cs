@@ -38,5 +38,7 @@ namespace Bogazici.Player
         public float AttackMovementSpeed;
         public int AttackAmount;
         public LayerMask WhatIsEnemy;
+        public float MeleeAttackRadius;
+        public int MeleeAttackDamage;
     }
 }

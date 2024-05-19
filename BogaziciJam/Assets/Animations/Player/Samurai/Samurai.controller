@@ -119,7 +119,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: meleeAttack
+    m_ConditionEvent: attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 1853498480368649516}
   m_DstState: {fileID: 0}
@@ -188,7 +188,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: meleeAttack
+    m_ConditionEvent: attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -247,7 +247,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: meleeAttack
+  - m_Name: attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -405,15 +405,15 @@ AnimatorStateMachine:
   - {fileID: 4128406981909115592}
   - {fileID: 9064074057651279264}
   m_StateMachineTransitions:
-  - first: {fileID: 5253407118667269543}
-    second:
-    - {fileID: -399977763756293519}
-  - first: {fileID: 828117620357399052}
-    second:
-    - {fileID: -8359035956969092611}
   - first: {fileID: 440488221865065334}
     second:
     - {fileID: -8858212629968663902}
+  - first: {fileID: 828117620357399052}
+    second:
+    - {fileID: -8359035956969092611}
+  - first: {fileID: 5253407118667269543}
+    second:
+    - {fileID: -399977763756293519}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -683,7 +683,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: meleeAttack
+    m_ConditionEvent: attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 1853498480368649516}
   m_DstState: {fileID: 0}
@@ -826,7 +826,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: meleeAttack
+    m_ConditionEvent: attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 1853498480368649516}
   m_DstState: {fileID: 0}
@@ -952,7 +952,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: meleeAttack
+    m_ConditionEvent: attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 5253407118667269543}
   m_DstState: {fileID: 0}

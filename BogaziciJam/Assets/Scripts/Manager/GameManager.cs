@@ -1,6 +1,5 @@
 using IboshEngine.Runtime.Singleton;
 using System;
-using UnityEngine;
 
 namespace Bogazici.Managers
 {
@@ -9,15 +8,15 @@ namespace Bogazici.Managers
         public GameTime GameTime;
         public Action OnGameTimeChanged;
 
-        public Player.Player Player;
+        public Player.Player CurrentPlayer;
+        public Player.CyberBoy CyberBoy;
+        public Player.Samurai Samurai;
 
         public bool IsGamePaused;
 
         protected override void Awake()
         {
             base.Awake();
-
-            Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player.Player>();
         }
 
         public void ChangeTime()
@@ -26,9 +25,11 @@ namespace Bogazici.Managers
             {
                 case GameTime.Cyberpunk:
                     GameTime = GameTime.Japanese;
+                    CurrentPlayer = CyberBoy;
                     break;
                 case GameTime.Japanese:
                     GameTime = GameTime.Cyberpunk;
+                    CurrentPlayer = Samurai;
                     break;
             }
 

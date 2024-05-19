@@ -22,7 +22,7 @@ namespace Bogazici.Entity
         public T Data;
         public Health.Health Health { get; private set; }
 
-        public int FacingDirection { get; private set; }
+        public int FacingDirection { get; set; }
 
         public Vector2 CurrentVelocity { get; private set; }
 
